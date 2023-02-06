@@ -1,0 +1,24 @@
+{
+  "name": "emeguan/laravel-resources",
+  "description": "Adds extra functionality to the Laravel Eloquent: API Resources, allowing you to choose attributes and relationships to return via url",
+  "keywords": ["laravel", "api"],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/emeGuan/laravel-resources/issues",
+    "source": "https://github.com/emeGuan/laravel-resources"
+  },
+  "authors": [
+    {
+      "name": "Manuel Nicolás"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "EmeGuan\\Resources\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}
