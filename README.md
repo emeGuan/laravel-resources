@@ -59,7 +59,7 @@ http://laravel-resource.local/as
 ```
 ## Documentation
 In the url we can specify the attributes we want from a model and the relationships to include. Let's see this with an example.  
-We start from these 3 models:
+We start from these 5 models:
 ```php
 class A extends Model
 {
@@ -71,6 +71,11 @@ class A extends Model
     public function bs()
     {
         return $this->hasMany(B::class);
+    }
+    
+    public function ds()
+    {
+        return $this->hasMany(D::class);
     }
 }
 
@@ -104,6 +109,37 @@ class C extends Model
         return $this->belongsTo(B::class);
     }
 }
+
+class D extends Model
+{
+    use HasFactory;
+    use ModelTrait;
+
+    protected $fillable = [ 'id', 'name', 'a_id'];
+
+    public function es()
+    {
+        return $this->hasMany(E::class);
+    }
+
+    public function a()
+    {
+        return $this->belongsTo(A::class);
+    }
+}
+
+class E extends Model
+{
+    use HasFactory;
+    use ModelTrait;
+
+    protected $fillable = [ 'id', 'name', 'd_id'];
+
+    public function d()
+    {
+        return $this->belongsTo(D::class);
+    }
+}
 ```
 
 * Get all As with onlly id and name attribute  
@@ -123,7 +159,6 @@ http://laravel-resources.local/as?fields[as]=id,name
       "id": 3,
       "name": "A3"
     },
-...
 ```
 * Get all As include all Bs with specific attributes  
 http://laravel-resources.local/as?include=bs&fields[as]=id,name&fields[bs]=name
@@ -172,7 +207,6 @@ http://laravel-resources.local/as?include=bs&fields[as]=id,name&fields[bs]=name
         }
       ]
     },
-...
 ```
 
 * We can include multilevel relationships with the dot notation  
@@ -261,7 +295,6 @@ http://laravel-resources.local/as?include=bs.cs&fields[as]=id,name&fields[bs]=na
       "id": 2,
       "name": "A2",
       "bs": [
-...
 ```
 If attributes are not specified all are returned
 
@@ -291,11 +324,69 @@ http://laravel-resources.local/bs?fields[bs]=name,a&fields[a]=id,name
         "name": "A1"
       }
     },
-...
 ```
 * We can include multiple relationships separated by commas  
-  http://laravel-resources.local/ TODO
-***TODO***
+  http://laravel-resources.local/as?include=bs,ds&fields[bs]=name&fields[ds]=name
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "A1",
+      "created_at": "2023-02-06 16:55:52",
+      "updated_at": "2023-02-06 16:55:52",
+      "bs": [
+        {
+          "name": "B1"
+        },
+        {
+          "name": "B2"
+        },
+        {
+          "name": "B3"
+        }
+      ],
+      "ds": [
+        {
+          "name": "D1"
+        },
+        {
+          "name": "D2"
+        },
+        {
+          "name": "D3"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "A2",
+      "created_at": "2023-02-06 16:55:52",
+      "updated_at": "2023-02-06 16:55:52",
+      "bs": [
+        {
+          "name": "B4"
+        },
+        {
+          "name": "B5"
+        },
+        {
+          "name": "B6"
+        }
+      ],
+      "ds": [
+        {
+          "name": "D4"
+        },
+        {
+          "name": "D5"
+        },
+        {
+          "name": "D6"
+        }
+      ]
+    },
+```
 
 ## License
 Laravel API Resources is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
