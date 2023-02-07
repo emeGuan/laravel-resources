@@ -19,6 +19,10 @@ Install using [Composer](https://getcomposer.org)
 composer require emeguan/laravel-resources
 ```
 
+## Requirements
+I have not tested it but it should work with any version of Laravel that includes Eloquent API Resources, that is, Laravel 5.5 and later.  
+The code has been tested with Laravel 9
+
 ## Use
 ### Model
 ```php
