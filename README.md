@@ -55,7 +55,6 @@ http://laravel-resource.local/as
       "created_at": "2023-02-06 16:55:52",
       "updated_at": "2023-02-06 16:55:52"
     },
-...
 ```
 ## Documentation
 In the url we can specify the attributes we want from a model and the relationships to include. Let's see this with an example.  
@@ -209,7 +208,7 @@ http://laravel-resources.local/as?include=bs&fields[as]=id,name&fields[bs]=name
     },
 ```
 
-* We can include multilevel relationships with the dot notation  
+* We can include multilevel relationships with the dot notation.  
 http://laravel-resources.local/as?include=bs.cs&fields[as]=id,name&fields[bs]=name
 ```json
 {
@@ -296,7 +295,8 @@ http://laravel-resources.local/as?include=bs.cs&fields[as]=id,name&fields[bs]=na
       "name": "A2",
       "bs": [
 ```
-If attributes are not specified all are returned
+If attributes are not specified all are returned.  
+All relations are included with the dot notation, in the example it is not necessary to specify *include=bs,bs.cs*
 
 * We can include *belongsTo* relationships  
 http://laravel-resources.local/bs?fields[bs]=name,a&fields[a]=id,name
@@ -387,6 +387,154 @@ http://laravel-resources.local/bs?fields[bs]=name,a&fields[a]=id,name
       ]
     },
 ```
+
+## TODO
+* When we include a second level relationship and the first level does not specify any attribute with *fields[relationship]=* an output similar to this is returned
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "bs": [
+        {
+          "cs": [
+            {
+              "id": 1,
+              "name": "C1",
+              "b_id": 1,
+              "created_at": "2023-02-06 16:57:18",
+              "updated_at": "2023-02-06 16:57:18"
+            },
+            {
+              "id": 2,
+              "name": "C2",
+              "b_id": 1,
+              "created_at": "2023-02-06 16:57:18",
+              "updated_at": "2023-02-06 16:57:18"
+            },
+            {
+              "id": 3,
+              "name": "C3",
+              "b_id": 1,
+              "created_at": "2023-02-06 16:57:18",
+              "updated_at": "2023-02-06 16:57:18"
+            }
+          ]
+        },
+        {
+          "cs": [
+            {
+              "id": 4,
+              "name": "C4",
+              "b_id": 2,
+              "created_at": "2023-02-06 16:57:18",
+              "updated_at": "2023-02-06 16:57:18"
+            },
+            {
+              "id": 5,
+              "name": "C5",
+              "b_id": 2,
+              "created_at": "2023-02-06 16:57:18",
+              "updated_at": "2023-02-06 16:57:18"
+            },
+            {
+              "id": 6,
+              "name": "C6",
+              "b_id": 2,
+              "created_at": "2023-02-06 16:57:18",
+              "updated_at": "2023-02-06 16:57:18"
+            }
+          ]
+        },
+        {
+          "cs": [
+            {
+              "id": 7,
+              "name": "C7",
+              "b_id": 3,
+              "created_at": "2023-02-06 16:57:18",
+              "updated_at": "2023-02-06 16:57:18"
+            },
+            {
+              "id": 8,
+              "name": "C8",
+              "b_id": 3,
+              "created_at": "2023-02-06 16:57:18",
+              "updated_at": "2023-02-06 16:57:18"
+            }
+          ]
+        }
+      ]
+    },
+```
+Something similar to this could be returned where the 1st level relationship did not appear
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "cs": [
+        {
+          "id": 1,
+          "name": "C1",
+          "b_id": 1,
+          "created_at": "2023-02-06 16:57:18",
+          "updated_at": "2023-02-06 16:57:18"
+        },
+        {
+          "id": 2,
+          "name": "C2",
+          "b_id": 1,
+          "created_at": "2023-02-06 16:57:18",
+          "updated_at": "2023-02-06 16:57:18"
+        },
+        {
+          "id": 3,
+          "name": "C3",
+          "b_id": 1,
+          "created_at": "2023-02-06 16:57:18",
+          "updated_at": "2023-02-06 16:57:18"
+        },
+        {
+          "id": 4,
+          "name": "C4",
+          "b_id": 2,
+          "created_at": "2023-02-06 16:57:18",
+          "updated_at": "2023-02-06 16:57:18"
+        },
+        {
+          "id": 5,
+          "name": "C5",
+          "b_id": 2,
+          "created_at": "2023-02-06 16:57:18",
+          "updated_at": "2023-02-06 16:57:18"
+        },
+        {
+          "id": 6,
+          "name": "C6",
+          "b_id": 2,
+          "created_at": "2023-02-06 16:57:18",
+          "updated_at": "2023-02-06 16:57:18"
+        },
+        {
+          "id": 7,
+          "name": "C7",
+          "b_id": 3,
+          "created_at": "2023-02-06 16:57:18",
+          "updated_at": "2023-02-06 16:57:18"
+        },
+        {
+          "id": 8,
+          "name": "C8",
+          "b_id": 3,
+          "created_at": "2023-02-06 16:57:18",
+          "updated_at": "2023-02-06 16:57:18"
+        }
+      ]
+    },
+```
+
+* ...
 
 ## License
 Laravel API Resources is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
