@@ -393,7 +393,8 @@ http://laravel-resources.local/bs?fields[bs]=name,a&fields[a]=id,name
 ```
 
 ## TODO
-* When we include a second level relationship and the first level does not specify any attribute with *fields[relationship]=* an output similar to this is returned
+* When we include a second level relationship and the first level does not specify any attribute with *fields[relationship]=* an output similar to this is returned  
+  http://laravel-resources.local/as?include=bs.cs&fields[as]=id&fields[bs]=&fileds[cs]=name
 ```json
 {
   "data": [
