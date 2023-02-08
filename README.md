@@ -394,7 +394,7 @@ http://laravel-resources.local/bs?fields[bs]=name,a&fields[a]=id,name
 
 ## TODO
 * When we include a second level relationship and the first level does not specify any attribute with *fields[relationship]=* an output similar to this is returned  
-  http://laravel-resources.local/as?include=bs.cs&fields[as]=id&fields[bs]=&fileds[cs]=name
+  http://laravel-resources.local/as?include=bs.cs&fields[as]=id&fields[bs]=&fields[cs]=name
 ```json
 {
   "data": [
@@ -404,68 +404,36 @@ http://laravel-resources.local/bs?fields[bs]=name,a&fields[a]=id,name
         {
           "cs": [
             {
-              "id": 1,
-              "name": "C1",
-              "b_id": 1,
-              "created_at": "2023-02-06 16:57:18",
-              "updated_at": "2023-02-06 16:57:18"
+              "name": "C1"
             },
             {
-              "id": 2,
-              "name": "C2",
-              "b_id": 1,
-              "created_at": "2023-02-06 16:57:18",
-              "updated_at": "2023-02-06 16:57:18"
+              "name": "C2"
             },
             {
-              "id": 3,
-              "name": "C3",
-              "b_id": 1,
-              "created_at": "2023-02-06 16:57:18",
-              "updated_at": "2023-02-06 16:57:18"
+              "name": "C3"
             }
           ]
         },
         {
           "cs": [
             {
-              "id": 4,
-              "name": "C4",
-              "b_id": 2,
-              "created_at": "2023-02-06 16:57:18",
-              "updated_at": "2023-02-06 16:57:18"
+              "name": "C4"
             },
             {
-              "id": 5,
-              "name": "C5",
-              "b_id": 2,
-              "created_at": "2023-02-06 16:57:18",
-              "updated_at": "2023-02-06 16:57:18"
+              "name": "C5"
             },
             {
-              "id": 6,
-              "name": "C6",
-              "b_id": 2,
-              "created_at": "2023-02-06 16:57:18",
-              "updated_at": "2023-02-06 16:57:18"
+              "name": "C6"
             }
           ]
         },
         {
           "cs": [
             {
-              "id": 7,
-              "name": "C7",
-              "b_id": 3,
-              "created_at": "2023-02-06 16:57:18",
-              "updated_at": "2023-02-06 16:57:18"
+              "name": "C7"
             },
             {
-              "id": 8,
-              "name": "C8",
-              "b_id": 3,
-              "created_at": "2023-02-06 16:57:18",
-              "updated_at": "2023-02-06 16:57:18"
+              "name": "C8"
             }
           ]
         }
@@ -480,60 +448,28 @@ Something similar to this could be returned where the 1st level relationship did
       "id": 1,
       "cs": [
         {
-          "id": 1,
-          "name": "C1",
-          "b_id": 1,
-          "created_at": "2023-02-06 16:57:18",
-          "updated_at": "2023-02-06 16:57:18"
+          "name": "C1"
         },
         {
-          "id": 2,
-          "name": "C2",
-          "b_id": 1,
-          "created_at": "2023-02-06 16:57:18",
-          "updated_at": "2023-02-06 16:57:18"
+          "name": "C2"
         },
         {
-          "id": 3,
-          "name": "C3",
-          "b_id": 1,
-          "created_at": "2023-02-06 16:57:18",
-          "updated_at": "2023-02-06 16:57:18"
+          "name": "C3"
         },
         {
-          "id": 4,
-          "name": "C4",
-          "b_id": 2,
-          "created_at": "2023-02-06 16:57:18",
-          "updated_at": "2023-02-06 16:57:18"
+          "name": "C4"
         },
         {
-          "id": 5,
-          "name": "C5",
-          "b_id": 2,
-          "created_at": "2023-02-06 16:57:18",
-          "updated_at": "2023-02-06 16:57:18"
+          "name": "C5"
         },
         {
-          "id": 6,
-          "name": "C6",
-          "b_id": 2,
-          "created_at": "2023-02-06 16:57:18",
-          "updated_at": "2023-02-06 16:57:18"
+          "name": "C6"
         },
         {
-          "id": 7,
-          "name": "C7",
-          "b_id": 3,
-          "created_at": "2023-02-06 16:57:18",
-          "updated_at": "2023-02-06 16:57:18"
+          "name": "C7"
         },
         {
-          "id": 8,
-          "name": "C8",
-          "b_id": 3,
-          "created_at": "2023-02-06 16:57:18",
-          "updated_at": "2023-02-06 16:57:18"
+          "name": "C8"
         }
       ]
     },
