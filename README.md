@@ -392,6 +392,33 @@ http://laravel-resources.local/bs?fields[bs]=name,a&fields[a]=id,name
     },
 ```
 
+* You may need to create several methods that return the same collection but with different functionality. There is no problem since the name of the main relation is taken from the name of the model collection table.  
+  http://laravel-resources.local/as-call-1?fields[as]=id,name
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "A1"
+    },
+    {
+      "id": 2,
+      "name": "A2"
+    },
+    {
+      "id": 3,
+      "name": "A3"
+    },
+    {
+      "id": 4,
+      "name": "A4"
+    },
+    {
+      "id": 5,
+      "name": "A5"
+    },
+```
+
 ## TODO
 * When we include a second level relationship and the first level does not specify any attribute with *fields[relationship]=* an output similar to this is returned  
   http://laravel-resources.local/as?include=bs.cs&fields[as]=id&fields[bs]=&fields[cs]=name

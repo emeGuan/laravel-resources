@@ -18,7 +18,8 @@ class Collection extends ResourceCollection
             $request=Container::getInstance()->make('request');
 
             //Main entity
-            $this->principalEntity=$request->path();
+            if(count($resource)>0)
+                $this->principalEntity=$resource->first()->getTable();
 
             //Fields
             if($request->exists('fields')){
