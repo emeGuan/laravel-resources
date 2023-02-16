@@ -19,7 +19,7 @@ class Collection extends ResourceCollection
 
             //Main entity
             if(count($resource)>0)
-                $this->principalEntity=$resource->first()->getTable();
+                $this->principalEntity=str_replace('_', '', $resource->first()->getTable());
 
             //Fields
             if($request->exists('fields')){
