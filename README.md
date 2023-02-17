@@ -39,6 +39,12 @@ Route::get('/as', function ()
     $as=A::all();
     return new \EmeGuan\Resources\Collection($as);
 });
+
+Route::get('/a/{id}', function ($id)
+{
+    $a=A::find($id);
+    return new \EmeGuan\Resources\Resource($a);  //<--
+});
 ```
 
 ### Call
@@ -60,6 +66,19 @@ http://laravel-resource.local/as
       "updated_at": "2023-02-06 16:55:52"
     },
 ```
+
+http://laravel-resource.local/a/1
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "A1",
+    "created_at": "2023-02-06 16:55:52",
+    "updated_at": "2023-02-06 16:55:52"
+  }
+}
+```
+
 ## Documentation
 In the url we can specify the attributes we want from a model and the relationships to include. Let's see this with an example.  
 We start from these 5 models:

@@ -7,6 +7,8 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class Collection extends ResourceCollection
 {
+    use ParameterTrait;
+
     private $principalEntity=null;
     private $entities=[];
     private $includeEntities=[];
@@ -14,30 +16,8 @@ class Collection extends ResourceCollection
     function __construct($resource, $principalEntity=null, $entities=[], $includeEntities=[]) {
         parent::__construct($resource);
 
-        if(func_num_args()===1){
-            $request=Container::getInstance()->make('request');
-
-            //Main entity
-            if(count($resource)>0)
-                $this->principalEntity=str_replace('_', '', $resource->first()->getTable());
-
-            //Fields
-            if($request->exists('fields')){
-                $entidadKeys=array_keys($request->get('fields'));
-                foreach ($entidadKeys as $entidadKey){
-                    $this->entities[$entidadKey]=[];
-                    $atributos=$request->get('fields')[$entidadKey];
-                    $atributos=explode(',', $atributos);
-                    foreach ($atributos as $atributo)
-                        $this->entities[$entidadKey][$atributo]=null;
-                }
-            }
-
-            //Includes
-            if($request->exists('include')){
-                $this->includeEntities=explode(',', $request->get('include'));
-            }
-        }
+        if(func_num_args()===1)
+            $this->processParameters();
         else{
             $this->principalEntity=$principalEntity;
             $this->entities=$entities;

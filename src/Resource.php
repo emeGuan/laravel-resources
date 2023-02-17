@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class Resource extends JsonResource
 {
+    use ParameterTrait;
 
     private function processIncludeEntities($includeEntities, &$entities)
     {
@@ -29,6 +30,12 @@ class Resource extends JsonResource
     public function toArray($request)
     {
         $resource=$this->resource;
+        if(is_null($resource))
+            return null;
+
+        //Process parameters. Call without Collection
+        if(is_null($resource->principalEntity))
+            $this->processParameters();
 
         $fields = $resource->entities[$resource->principalEntity] ?? [];
         if (count($fields) != 0) {
