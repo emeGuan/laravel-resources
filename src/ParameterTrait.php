@@ -19,10 +19,11 @@ trait ParameterTrait
                 return;
             $resource=$this;
         }
-        elseif($this instanceof Resource)
-            if(is_null($this->resource))
+        elseif($this instanceof Resource) {
+            if (is_null($this->resource))
                 return;
-            $resource=$this->resource;
+            $resource = $this->resource;
+        }
 
         //Main entity
         $resource->principalEntity=str_replace('_', '', $resource->first()->getTable());
