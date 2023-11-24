@@ -348,6 +348,38 @@ http://laravel-resources.local/bs?fields[bs]=name,a&fields[a]=id,name
       }
     },
 ```
+
+* If you need all the attributes and some relationship you can use * to replace all the attributes    
+  http://laravel-resources.local/bs?fields[bs]=*,a&fields[a]=id,name
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "B1",
+      "a": {
+        "id": 1,
+        "name": "A1"
+      }
+    },
+    {
+      "id": 2,
+      "name": "B2",
+      "a": {
+        "id": 1,
+        "name": "A1"
+      }
+    },
+    {
+      "id": 3,
+      "name": "B3",
+      "a": {
+        "id": 1,
+        "name": "A1"
+      }
+    },
+```
+
 * We can include multiple relationships separated by commas  
   http://laravel-resources.local/as?include=bs,ds&fields[bs]=name&fields[ds]=name
 ```json

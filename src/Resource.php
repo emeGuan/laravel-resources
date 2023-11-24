@@ -53,6 +53,12 @@ class Resource extends JsonResource
                         $this[$key]->setRawAttributes($attributes, true);
                     }
                     $resource->entities[$resource->principalEntity][$key] = $this[$key]->getAttributes();
+                    break;
+                }
+                //*, all fields, but no relationship
+                if ($key==='*'){
+                    $attributes=$resource->getAttributes();
+                    $resource->entities[$resource->principalEntity] = $attributes;
                 }
                 //Normal field
                 else
