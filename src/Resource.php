@@ -56,7 +56,7 @@ class Resource extends JsonResource
                 }
                 //*, all fields, but no relationship
                 if ($key==='*'){
-                    $attributes=$resource->getAttributes();
+                    $attributes=$resource->attributesToArray();
                     $resource->entities[$resource->principalEntity] = $attributes;
                 }
                 //Normal field
